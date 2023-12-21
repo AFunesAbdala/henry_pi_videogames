@@ -1,0 +1,377 @@
+@font-face {
+    font-family: 'Stretch Pro';
+    src: url('../../assets/fonts/StretchPro.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+.wrapper{
+    width: 1400px;
+    height: fit-content;
+}
+.header_wrap{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.genre_wrap{
+    display: flex;
+    gap: 30px;
+    font-family: "Roboto";
+    font-weight: lighter;
+    font-size: 20px;
+    color: white;
+}
+.name_videogame{
+    width: 1000px;
+    margin-top: 20px;
+    font-family: 'Stretch Pro';
+    font-size: 50px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 50px;
+    color: white;
+}
+.rating_box{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0);   
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rating_box::before{
+    width: 125px;
+    height: 125px;
+    content: "";
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #FF0000, #8900FF); 
+    -webkit-mask: radial-gradient(circle, transparent 67%, black 50%);
+    mask: radial-gradient(circle, transparent 67%, black 50%);
+    position: absolute;
+    z-index: -1;
+    left: -2%;
+    top: -2%;
+
+}
+.star{
+    width: 40px;
+    height: 40px;
+    background-image: url(../../assets/icons/IconStar.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    top: -40px;
+    
+}
+.rating{
+    font-family: 'Stretch Pro';
+    font-size: 25px;
+    color: white;
+    line-height: 0;
+}
+
+
+.info_wrap{
+    width: 100%;
+    height: 500px;
+    margin-top: 40px;
+    display: flex;
+    gap: 30px;
+}
+.img_wrap{
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 20px 120px 20px 120px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+.text_wrap{
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.platforms{
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    margin-bottom: 0px;
+}
+.platforms_wrap{
+    height: 80px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row-reverse;
+}
+.Xbox { 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/Xbox.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.Xbox::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.Xbox:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.Pc { 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/Pc.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.Pc::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.Pc:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.MacOs { 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/MacOs.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.MacOs::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.MacOs:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.Nintendo { 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/Nintendo.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.Nintendo::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.Nintendo:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.Linux { 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/Linux.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.Linux::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.Linux:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.Web{ 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/Web.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.Web::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.Web:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.Ps4 { 
+    width: 80px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/Ps4.png);
+    background-color: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+}
+.Ps4::before {
+    z-index: 2;
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 25px;
+    left: 90px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.Ps4:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.description_wrap{
+    font-family: "Roboto";
+    font-weight: normal;
+    line-height: 30px;
+    color: #333333;
+    height: 300px;
+    border-radius: 20px 20px 120px 20px;
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.textdescription{
+    height: fit-content;
+    margin: 30px 30px 30px 30px;
+}
+.textreleased{
+    margin: 0px 30px 0px 30px;
+}

@@ -1,0 +1,7 @@
+.wrapper{
+    width: 1400px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 30px 30px;
+}
