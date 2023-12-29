@@ -51,7 +51,8 @@ function App() {
         window.alert(response.data.message)
       })
       .catch((error) => {
-        window.alert(error.response.data.map(e => e.message))
+        console.log(error)
+        window.alert(error.response.data.errors.map(e => e.message))
       })
   }
 
