@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import WrapVideogames from "../components/wrapVideogames/wrapVideogames"
+import WrapVideogames from "../components/wrapVideogames/WrapVideogames"
 import style from "./views.module.css"
 import { useState } from "react"
 

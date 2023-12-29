@@ -8,7 +8,7 @@ const WrapVideogames = (props) => {
     return (
         <div className={style.wrapper}>
             {
-                videogames ? videogames.map((e) => {
+                videogames && videogames.map((e) => {
                     return (
                         <CardVideogame
                             key={e.id}
@@ -19,8 +19,7 @@ const WrapVideogames = (props) => {
                             rating={e.rating}
                         ></CardVideogame>
                     )
-                }) :
-                <div>Loading</div>
+                })
             }
             
         </div>
