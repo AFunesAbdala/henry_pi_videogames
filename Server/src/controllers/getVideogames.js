@@ -4,7 +4,7 @@ const { API_KEY } = process.env
 
 const getVideogames = async () => {
 
-    const URL = `https://api.rawg.io/api/games?page_size=100&key=${API_KEY}`;
+    const URL = `https://api.rawg.io/api/games?page_size=40&key=${API_KEY}`;
 
     try {
         
@@ -17,8 +17,8 @@ const getVideogames = async () => {
             name: vj.name,
             rating: vj.rating,
             image: vj.background_image,
-            genres: vj.genres.map((p) => {
-                return { name : p.name }
+            genres: vj.genres.map((g) => {
+                return { name : g.name }
             }),
         }));
 

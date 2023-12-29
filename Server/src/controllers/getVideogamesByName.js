@@ -13,7 +13,7 @@ const getVideogamesByName = async (gameName) => {
         const dbVideogames = await videogame.findAll({
             where : {
                 name: {
-                    [Op.iLike]: `%${gameName}%`
+                    [Op.iLike]: `${gameName}%`
                 }
             },
             include : [
@@ -34,8 +34,8 @@ const getVideogamesByName = async (gameName) => {
             name: vj.name,
             image: vj.background_image,
             rating: vj.rating,
-            genres: vj.genres.map((p) => {
-                return { name : p.name }
+            genres: vj.genres.map((g) => {
+                return { name : g.name }
             })
         }));
 

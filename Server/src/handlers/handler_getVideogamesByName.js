@@ -13,6 +13,11 @@ const handler_getVideogamesByName = async (req, res) => {
     try {
         
         const videogamesByName = await getVideogamesByName(gameName)
+
+        if (videogamesByName.error) {
+            res.status(400).json(videogamesByName)
+            return
+        }
         
         res.status(200).json(videogamesByName)
 
