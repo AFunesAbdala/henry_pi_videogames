@@ -13,7 +13,7 @@ const handler_postVideogames = async (req, res) => {
     } = req.body;
 
     if(!name || !description || !image || !platforms || !released || !rating || !genres) {
-        res.status(400).json({ error : "Missing Data"})
+        res.status(400).json({ errors : [ { message : "Missing Data" } ]})
         return
     }
 
@@ -22,7 +22,7 @@ const handler_postVideogames = async (req, res) => {
         const newVideogame = await postVideogames(name, description, image, platforms, released, rating, genres)
         
         if (newVideogame.errors) {    
-            res.status(400).json(newVideogame.errors)
+            res.status(400).json(newVideogame)
             return
         }
 
