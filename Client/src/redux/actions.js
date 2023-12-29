@@ -66,7 +66,7 @@ export const get_genres = () => {
 }
 
 export const get_platforms = () => {
-    const endpoint = `${URL}/genres`
+    const endpoint = `${URL}/platforms`
     return async (dispatch) => {
 
         try {
