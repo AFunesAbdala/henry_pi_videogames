@@ -21,7 +21,7 @@ export const get_videogames = () => {
                 });
             }
         } catch (error) {
-            window.alert(error.message)
+            window.alert(error.response.data.message)
         }
     }
 }
@@ -40,7 +40,7 @@ export const get_videogamesByName = (name) => {
                 });
             }
         } catch (error) {
-            window.alert(error.message)
+            window.alert(error.response.data.error)
         }
     }
 }
@@ -59,7 +59,7 @@ export const get_genres = () => {
                 });
             }
         } catch (error) {
-            window.alert(error.message)
+            window.alert(error.response.data.message)
         }
     }
 }

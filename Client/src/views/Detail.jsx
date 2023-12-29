@@ -4,8 +4,9 @@ import style from "./views.module.css"
 import axios from "axios"
 import DetailVideogame from "../components/detail/DetailVideogame"
 
-const Detail = () => {
+const Detail = (props) => {
 
+    const { deleteVideogame } = props
     const { id } = useParams();
     const [ videogame , setVideogame ] = useState(null);
 
@@ -27,7 +28,7 @@ const Detail = () => {
         <div className={style.detail}>
             { !videogame ? 
                 <div></div> : 
-                <DetailVideogame videogame={videogame}></DetailVideogame>
+                <DetailVideogame videogame={videogame} deleteVideogame={deleteVideogame} ></DetailVideogame>
             }
         </div>
     )

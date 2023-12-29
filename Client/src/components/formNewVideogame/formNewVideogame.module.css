@@ -1,6 +1,6 @@
 .wrapper{
     width: 1300px;
-    height: 600px;
+    height: 700px;
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.09);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -12,7 +12,7 @@
 }
 .formwrap{
     width: 90%;
-    height: 80%;
+    height: 90%;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -24,10 +24,33 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     font-family: 'Roboto';
     font-size: 15px;
     font-weight: normal;
+    font-style: normal;
+    color: white;
+}
+.errorActive{
+    height: 14px;
+    margin: 0px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: #D94A3D;
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-weight: bold;
+    font-style: normal;
+    color: white;
+}
+.errorDeactive{
+    height: 14px;
+    margin: 0px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: #04BFAD;
+    font-family: 'Roboto';
+    font-size: 13px;
+    font-weight: bold;
     font-style: normal;
     color: white;
 }
@@ -36,6 +59,7 @@
     border: none;
     border-radius: 10px;
     border: solid 1px #999999;
+    margin: 10px 0px;
     padding: 5px 10px;
     font-family: 'Roboto';
     font-size: 15px;
@@ -49,6 +73,7 @@
 .inputRating{
     appearance: none;
     height: 5px;
+    margin: 15px 0px;
     background: white;
     border-radius: 10px;
     outline: none;
@@ -80,6 +105,7 @@
     border: none;
     border-radius: 10px;
     border: solid 1px #999999;
+    margin: 10px 0px;
     padding: 5px 10px;
     font-family: 'Roboto';
     font-size: 15px;
@@ -92,6 +118,7 @@
 }
 .inputDescription{
     height: 80px;
+    margin: 10px 0px;
     padding: 10px 10px;
     border: solid 1px #999999;
     border-radius: 10px;
@@ -113,7 +140,7 @@
     color: white;
 }
 .optionsWrapper{
-    margin-top: 10px;
+    margin: 10px 0px;
     display: flex;
     flex-wrap: wrap;
     gap: 15px 15px;
@@ -150,7 +177,6 @@
     width: 50%;
 }
 .selectorTitleP{
-    margin-bottom: 10px;
     font-family: 'Roboto';
     font-size: 15px;
     font-weight: normal;
@@ -160,6 +186,7 @@
 .optionsPWrapper{
     width: 100%;
     height: 200px;
+    margin: 10px 0px;
     overflow: auto;
     z-index: 1;
     display: flex;
@@ -202,24 +229,32 @@
 .optionPDeactive:hover{
     background-color: rgb(226, 204, 255);
 }
-
+@font-face {
+    font-family: 'Stretch Pro';
+    src: url('../../assets/fonts/StretchPro.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
 .btnSubmit{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
+    width: 50%;
+    height: 50px;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     border: 1px solid rgba(255, 255, 255, 0.5);
-    position: relative;
-    top: 40%;
-    left: 100px;
-    background-image: url(../../assets/icons/IconUpload.png);
     background-repeat: no-repeat;
     cursor: pointer;
-    transition: .2s ease;
+    font-family: 'Stretch Pro';
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+    transition: transform .2s;
 }
 .btnSubmit:hover{
-    box-shadow: 0px 0px 20px rgba(137, 0, 255, 0.5);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgb(137, 0, 255);
+}
+.btnSubmit:active{
+    transform: scale(.95);
 }

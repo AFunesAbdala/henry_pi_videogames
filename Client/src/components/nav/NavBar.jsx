@@ -50,7 +50,7 @@ const NavBar = (props) => {
                         <div className={ expandedBtn ? style.logOutBtn : style.logOutBtnHide} data-tooltip="Log Out" ></div>
                     </Link>
                 </div>
-                <Link to={Helpers.Create}>
+                <Link to={`/myvideogame/new/0`}>
                     <div className={ expandedBtn ? style.createBtn : style.createBtnHide} data-tooltip="Create"></div>
                 </Link>
             </div>

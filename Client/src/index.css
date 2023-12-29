@@ -10,7 +10,7 @@ body{
     background-position: center;
 }
 .homeBack{
-    background-image: url(assets/backgrounds/Home.jpg);
+    background-image: url(assets/backgrounds/Landing.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;

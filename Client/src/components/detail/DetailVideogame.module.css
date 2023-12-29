@@ -12,8 +12,9 @@
     width: 100%;
     height: fit-content;
     display: flex;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 .genre_wrap{
     display: flex;
@@ -40,6 +41,7 @@
     background-color: rgba(0, 0, 0, 0);   
     position: relative;
     display: flex;
+    margin-left: auto;
     flex-direction: column;
     align-items: center;
 }
@@ -56,6 +58,90 @@
     left: -2%;
     top: -2%;
 
+}
+.btn_box{
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px 0px;
+}
+.deleteBtn{
+    width: 40px;
+    height: 40px;
+    background-image: url(../../assets/icons/IconDelete.png);
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    transition: .2s;
+}
+.deleteBtn:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px white;
+}
+.deleteBtn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 5px;
+    left: 50px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.deleteBtn:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+.editBtn{
+    width: 40px;
+    height: 40px;
+    background-image: url(../../assets/icons/IconEdit.png);
+    background-position: center;
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 6px;
+    transition: .2s;
+}
+.editBtn:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 5px white;
+}
+.editBtn::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 5px 15px;
+    top: 5px;
+    left: 50px;
+    border-radius: 50px;
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.editBtn:hover::before {
+    opacity: 1;
+    visibility: visible;
 }
 .star{
     width: 40px;
@@ -369,7 +455,9 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
 }
 .textdescription{
+    width: 95%;
     height: fit-content;
+    overflow-wrap: break-word;
     margin: 30px 30px 30px 30px;
 }
 .textreleased{

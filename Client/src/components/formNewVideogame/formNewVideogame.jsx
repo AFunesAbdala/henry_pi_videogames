@@ -1,28 +1,14 @@
 import { useState } from "react";
 import style from "./formNewVideogame.module.css"
-import { useSelector } from "react-redux";
+import { Validate, ValidateForm } from "./validations/validate";
+import { useLocation } from "react-router-dom";
 
 const FormNewVideogame = (props) => {
 
-    const { platforms , genres, submitVideogame } = props
+    const { platforms , genres, submitVideogame, editVideogame } = props
 
-    const [ selectedGenres, setSelectedGenres ] = useState([])
-    const handleOptionsGenre = (id_genre) => {
-        if (selectedGenres.includes(id_genre)) {
-            setSelectedGenres(selectedGenres.filter((selectedGenre) => selectedGenre !== id_genre));
-        } else {
-            setSelectedGenres([...selectedGenres, id_genre]);
-        }
-    }
-
-    const [ selectedPlatforms, setSelectedPlatforms ] = useState([])
-    const handleOptionsPlatform = (platform) => {
-        if (selectedPlatforms.includes(platform)) {
-            setSelectedPlatforms(selectedPlatforms.filter((selectedPlatforms) => selectedPlatforms !== platform));
-        } else {
-            setSelectedPlatforms([...selectedPlatforms, platform]);
-        }
-    }
+    const { pathname } = useLocation()
+    const UUID = pathname.split('/')[3]
 
     const [ videogameData , setVideogameData ] = useState({
         name : "",
@@ -32,16 +18,100 @@ const FormNewVideogame = (props) => {
         released: ""
     })
 
+    const [ errors, setErrors ] = useState({
+        name : "Enter the title of your video game",
+        image : "Enter the URL of your video game's image",
+        description : "Enter the description of your video game",
+        released : "Enter the date of your video game's release",
+        genres : "Select at least one genre",
+        platforms : "Select at least one platform"
+    })
+
     const handleChange = (event) => {
         const property = event.target.name
         const value = event.target.value
 
         setVideogameData({...videogameData, [property] : value})
+
+        Validate(property, errors, setErrors, {...videogameData, [property] : value})
+    }
+
+    const [ selectedGenres, setSelectedGenres ] = useState([])
+    const handleOptionsGenre = (id_genre) => {
+        setSelectedGenres((prevGenres) => {
+            const updatedGenres = prevGenres.includes(id_genre)
+                ? prevGenres.filter((selectedGenre) => selectedGenre !== id_genre)
+                : [...prevGenres, id_genre]
+            Validate("genres", errors, setErrors, updatedGenres)
+            return updatedGenres
+        });
+    }
+
+    const [ selectedPlatforms, setSelectedPlatforms ] = useState([])
+    const handleOptionsPlatform = (platform) => {
+        setSelectedPlatforms((prevPlatforms) => {
+            const updatedPlatforms = prevPlatforms.includes(platform)
+                ? prevPlatforms.filter((selectedPlatform) => selectedPlatform !== platform)
+                : [...prevPlatforms, platform]
+            Validate("platforms", errors, setErrors, updatedPlatforms)
+            return updatedPlatforms
+        })
     }
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        submitVideogame({...videogameData, genres : selectedGenres, platforms : selectedPlatforms})
+
+        if (pathname.endsWith(0)) {
+            if (Object.values(errors).some(error => error === '')){
+                submitVideogame({...videogameData, genres : selectedGenres, platforms : selectedPlatforms})
+                setVideogameData({
+                    name : "",
+                    image : "",
+                    rating : 0,
+                    description : "",
+                    released: ""
+                })
+                setSelectedGenres([])
+                setSelectedPlatforms([])
+                setErrors({
+                    name : "Enter the title of your video game",
+                    image : "Enter the URL of your video game's image",
+                    description : "Enter the description of your video game",
+                    released : "Enter the date of your video game's release",
+                    genres : "Select at least one genre",
+                    platforms : "Select at least one platform"
+                })
+            } else {
+                setErrors(ValidateForm(videogameData, selectedGenres, selectedPlatforms))
+                window.alert("Complete the form")
+            }
+        } else {
+            if (Object.values(errors).some(error => error === '')){
+                editVideogame( UUID , {...videogameData, genres : selectedGenres, platforms : selectedPlatforms})
+                setVideogameData({
+                    name : "",
+                    image : "",
+                    rating : 0,
+                    description : "",
+                    released: ""
+                })
+                setSelectedGenres([])
+                setSelectedPlatforms([])
+                setErrors({
+                    name : "Enter the title of your video game",
+                    image : "Enter the URL of your video game's image",
+                    description : "Enter the description of your video game",
+                    released : "Enter the date of your video game's release",
+                    genres : "Select at least one genre",
+                    platforms : "Select at least one platform"
+                })
+            } else {
+                setErrors(ValidateForm(videogameData, selectedGenres, selectedPlatforms))
+                window.alert("Complete the form")
+            }
+        }
+        
+        
     }
 
 
@@ -51,6 +121,7 @@ const FormNewVideogame = (props) => {
                 <div className={style.formLabels}>
                     <label htmlFor="name">Name</label>
                     <input type="text" name="name" value={videogameData.name} onChange={handleChange} className={style.inputName}/>
+                    <p className={errors.name ? style.errorActive : style.errorDeactive}>{errors.name ? errors.name : "Well done"}</p>
                 </div>
                 <div className={style.formLabels}>
                     <label htmlFor="rating">Rating</label>
@@ -60,14 +131,17 @@ const FormNewVideogame = (props) => {
                 <div className={style.formLabels}>
                     <label htmlFor="image">Image</label>
                     <input type="text" name="image" value={videogameData.image} onChange={handleChange} className={style.inputName}/>
+                    <p className={errors.image ? style.errorActive : style.errorDeactive}>{errors.image ? errors.image : "Well done"}</p>
                 </div>
                 <div className={style.formLabels}>
                     <label htmlFor="released">Released</label>
                     <input type="date" name="released" value={videogameData.released} onChange={handleChange} className={style.inputReleased}/>
+                    <p className={errors.released ? style.errorActive : style.errorDeactive}>{errors.released ? errors.released : "Well done"}</p>
                 </div>  
                 <div className={style.formLabels}>
                     <label htmlFor="description">Description</label>
                     <textarea name="description" value={videogameData.description} onChange={handleChange} className={style.inputDescription}></textarea>
+                    <p className={errors.description ? style.errorActive : style.errorDeactive}>{errors.description ? errors.description : "Well done"}</p>
                 </div>
                 <div className={style.selectorGenre}>
                     <div className={style.selectorTitleG}>Genres</div>
@@ -86,6 +160,7 @@ const FormNewVideogame = (props) => {
                             })
                         }
                     </div>
+                    <p className={errors.genres ? style.errorActive : style.errorDeactive}>{errors.genres ? errors.genres : "Well done"}</p>
                 </div>
                 <div className={style.selectorPlatform}>
                     <div className={style.selectorTitleP} onClick={()=>{handleVisibility()}}>Platforms</div>
@@ -104,8 +179,9 @@ const FormNewVideogame = (props) => {
                             })
                         }
                     </div>
+                    <p className={ errors.platforms ? style.errorActive : style.errorDeactive }>{errors.platforms ? errors.platforms : "Well done"}</p>
                 </div>
-                <button className={style.btnSubmit} type="submit"></button>
+                <button className={style.btnSubmit} type="submit">Upload</button>
             </form>
         </div>
     )

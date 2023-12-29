@@ -155,7 +155,6 @@
 .createBtn{
     width: 70px;
     height: 70px;
-    background-color: #F2F2F2;
     border-radius: 50%;
     background-image: url(../../assets/icons/IconGame.png);
     background-repeat: no-repeat;
@@ -171,7 +170,6 @@
     opacity: 0;
     width: 70px;
     height: 70px;
-    background-color: #F2F2F2;
     border-radius: 50%;
     background-image: url(../../assets/icons/IconGame.png);
     background-repeat: no-repeat;

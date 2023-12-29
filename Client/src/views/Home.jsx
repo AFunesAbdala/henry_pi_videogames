@@ -14,7 +14,9 @@ const Home = () => {
     const indexLastVideogame = page * videogamesPerPage;
     const indexFirstVideogame = indexLastVideogame - videogamesPerPage;
     
-    const visible_videogames = videogames.slice(indexFirstVideogame, indexLastVideogame);
+    const visible_videogames = videogames 
+        ? videogames.slice(indexFirstVideogame, indexLastVideogame) 
+        : videogames 
 
     const handlePageChange = (page) => {
         setPage(page);

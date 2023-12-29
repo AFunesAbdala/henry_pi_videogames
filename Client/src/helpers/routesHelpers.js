@@ -2,7 +2,7 @@ const Helpers = {
     Landing : "/",
     Home : "/home",
     Detail : "/detail/:id",
-    Create : "/createvideogame"
+    Create : "/myvideogame/:pathname/:id"
 }
 
 export default Helpers
