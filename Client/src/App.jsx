@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { get_genres, get_platforms, get_videogames, get_videogamesByName } from './redux/actions';
 import axios from 'axios';
+import { URL } from './helpers/routesBack'
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
 
   const submitVideogame = (videogameData) => {
     axios
-      .post('http://localhost:3001/myvideogame', videogameData)
+      .post(`${URL}/myvideogame`, videogameData)
       .then((response) => {
         window.alert(response.data.message)
       })
@@ -60,7 +61,7 @@ function App() {
 
   const deleteVideogame = (uuid) => {
     axios
-      .delete(`http://localhost:3001/myvideogame/${uuid}`)
+      .delete(`${URL}/myvideogame/${uuid}`)
       .then((response) => {
         if (response.status === 200) {
           window.alert(response.data.message)
@@ -74,7 +75,7 @@ function App() {
 
   const editVideogame = (UUID, videogameData) => {
     axios
-      .put(`http://localhost:3001/myvideogame/${UUID}`, videogameData)
+      .put(`${URL}/myvideogame/${UUID}`, videogameData)
       .then((response) => {
         window.alert(response.data.message)
       })

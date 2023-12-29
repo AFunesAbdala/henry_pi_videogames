@@ -5,10 +5,11 @@ import {
     PLATFORMS,
     ORDER
 } from './action_types';
+import { URL } from '../helpers/routesBack'
 import axios from 'axios';
 
 export const get_videogames = () => {
-    const endpoint = "http://localhost:3001/videogames"
+    const endpoint = `${URL}/videogames`
     return async (dispatch) => {
 
         try {
@@ -27,7 +28,7 @@ export const get_videogames = () => {
 }
 
 export const get_videogamesByName = (name) => {
-    const endpoint = `http://localhost:3001/videogamesByName?name=${name}`
+    const endpoint = `${URL}/videogamesByName?name=${name}`
     return async (dispatch) => {
 
         try {
@@ -46,7 +47,7 @@ export const get_videogamesByName = (name) => {
 }
 
 export const get_genres = () => {
-    const endpoint = "http://localhost:3001/genres"
+    const endpoint = `${URL}/genres`
     return async (dispatch) => {
 
         try {
@@ -65,7 +66,7 @@ export const get_genres = () => {
 }
 
 export const get_platforms = () => {
-    const endpoint = "http://localhost:3001/platforms"
+    const endpoint = `${URL}/genres`
     return async (dispatch) => {
 
         try {
