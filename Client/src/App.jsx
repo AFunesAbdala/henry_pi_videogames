@@ -76,6 +76,7 @@ function App() {
         if (response.status === 200) {
           setActiveModalError(true)
           setMessageError(response.data.message)
+          dispatch(get_videogames("db"))
           navigate('/home')
         }
       })
@@ -91,6 +92,7 @@ function App() {
       .then((response) => {
         setActiveModalError(true)
         setMessageError(response.data.message)
+        dispatch(get_videogames("db"))
       })
       .catch((error) => {
         setActiveModalError(true)
