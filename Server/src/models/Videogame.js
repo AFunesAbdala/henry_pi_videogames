@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       type : DataTypes.STRING,
       allowNull : false,
       validate : {
-        isUrl : true
+        is : /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/
       }
     },
     released : {

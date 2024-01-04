@@ -43,7 +43,7 @@ const getVideogamesByName = async (gameName) => {
         const db_api_limited = db_api.slice(0, 20);
 
         if (db_api.length === 0) {
-            return ({ error: 'No se encontraron videojuegos con ese nombre.' });
+            return ({ message : 'No video games were found with this name.' });
           } else {
             return db_api_limited
           }

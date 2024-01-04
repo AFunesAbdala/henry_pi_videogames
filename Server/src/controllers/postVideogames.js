@@ -20,9 +20,7 @@ const postVideogames = async (name, description, image, platforms, released, rat
         if (created) {
             return ({ message : "Your video game has been created successfully."})
         } else {
-            return ([
-                { message : "The video game already exists." }
-            ])
+            return ({ message : "The video game already exists." })
         }
 
     } catch (error) {

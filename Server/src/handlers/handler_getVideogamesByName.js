@@ -3,10 +3,10 @@ const getVideogamesByName = require("../controllers/getVideogamesByName");
 
 const handler_getVideogamesByName = async (req, res) => {
     
-    const gameName = req.query.name.toLowerCase();
+    const gameName = req.query.name.toLowerCase()
 
     if (!gameName) {
-        res.status(400).json({ error : "Ingrese datos en su busqueda"})
+        res.status(400).json({ message : "Missing query"})
         return
     }
 
@@ -14,7 +14,7 @@ const handler_getVideogamesByName = async (req, res) => {
         
         const videogamesByName = await getVideogamesByName(gameName)
 
-        if (videogamesByName.error) {
+        if (videogamesByName.message) {
             res.status(400).json(videogamesByName)
             return
         }

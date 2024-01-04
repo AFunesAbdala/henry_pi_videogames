@@ -17,12 +17,12 @@ const handler_editVideogame = async (req, res) => {
     const regex = /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-4[0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$/;
 
     if (!regex.test(id)) {
-        res.status(400).json({ error : "Params must be an UUID."})
+        res.status(400).json({ message : "Params must be an UUID."})
         return
     }
 
     if(!name || !description || !image || !platforms || !released || !rating || !genres) {
-        res.status(400).json({ errors : [ { message : "Missing Data" } ]})
+        res.status(400).json({ message : "Missing Data" })
         return
     }
 
@@ -31,11 +31,11 @@ const handler_editVideogame = async (req, res) => {
         const updateVideogame = await editVideogame(id, name, rating, released, image, description, genres, platforms)
         
         if (updateVideogame[0] === 0) {    
-            res.status(400).json({ errors : [ { message : "The video game with this UUID doesn't exist."} ]})
+            res.status(400).json({ message : "The video game with this UUID doesn't exist."})
             return
         }
 
-        res.status(200).json({ errors : [ { message : "Your video game has been successfully updated."} ]})
+        res.status(200).json({ message : "Your video game has been successfully updated."})
 
     } catch (error) {
         res.status(500).json(error)
