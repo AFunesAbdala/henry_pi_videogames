@@ -83,7 +83,7 @@ const FormNewVideogame = (props) => {
                 })
             } else {
                 setMessageError("Complete the form without errors")
-                handlerActiveModalError()
+                handlerActiveModalError(true)
             }
         } else {
             if (Object.values(errors).every(error => error === '')){
@@ -107,7 +107,7 @@ const FormNewVideogame = (props) => {
                 })
             } else {
                 setMessageError("Complete the form without errors")
-                handlerActiveModalError()
+                handlerActiveModalError(true)
                 
             }
         }
