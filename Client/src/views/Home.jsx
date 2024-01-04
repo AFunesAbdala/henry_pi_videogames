@@ -1,13 +1,17 @@
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import WrapVideogames from "../components/wrapVideogames/WrapVideogames"
 import style from "./views.module.css"
-import { useState } from "react"
+import { setPage } from "../redux/actions"
+import ModalError from "../components/modalError/modalError"
 
-const Home = () => {
+const Home = (props) => {
+
+    const { messageError, activeModalError, handlerActiveModalError } = props
 
     const videogames = useSelector(state => state.home_videogames)
+    const page = useSelector(state => state.page)
+    const dispatch = useDispatch()
 
-    const [ page, setPage ] = useState(1);
     const videogamesPerPage = 10;
     const totalPages = Math.ceil(videogames.length / videogamesPerPage)
 
@@ -19,7 +23,7 @@ const Home = () => {
         : videogames 
 
     const handlePageChange = (page) => {
-        setPage(page);
+        dispatch(setPage(page));
     }
 
     const pageNumbers = Array.from({ length : totalPages }, ( _ , index) => index + 1)
@@ -42,6 +46,7 @@ const Home = () => {
                     })
                 }
             </div>
+            <ModalError messageError={messageError} activeModalError={activeModalError} handlerActiveModalError={handlerActiveModalError}></ModalError>
         </div>
     )
 }

@@ -8,7 +8,7 @@ const WrapVideogames = (props) => {
     return (
         <div className={style.wrapper}>
             {
-                videogames && videogames.map((e) => {
+                videogames.length != 0 ? videogames.map((e) => {
                     return (
                         <CardVideogame
                             key={e.id}
@@ -19,7 +19,7 @@ const WrapVideogames = (props) => {
                             rating={e.rating}
                         ></CardVideogame>
                     )
-                })
+                }) : <div className={style.message}>There aren't any video games to display.</div>
             }
             
         </div>

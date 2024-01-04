@@ -3,14 +3,16 @@ import {
     ORDER,
     FILTER,
     GENRES,
-    PLATFORMS
+    PLATFORMS,
+    SET_PAGE
 } from './action_types'
 
 const initialState = {
     home_videogames : [],
-    copy_videogames : [],
+    original_videogames : [],
     genres: [],
-    platforms : []
+    platforms : [],
+    page : 1
 };
 
 const rootReducer = (state = initialState, {type, payload}) => {
@@ -18,28 +20,31 @@ const rootReducer = (state = initialState, {type, payload}) => {
         default:
             return {...state};
         case ADD_VIDEOGAMES:
-            return {...state, home_videogames : payload, copy_videogames : payload}
+            return {...state, home_videogames : payload, original_videogames : payload}
         case ORDER:
-            const orderedVideogames = [...state.home_videogames]
+            const orderVideogames = [...state.home_videogames]
             if (payload === 'AZ') {
-                orderedVideogames.sort((a, b) => (a.name > b.name ? 1 : -1));
+                orderVideogames.sort((a, b) => (a.name > b.name ? 1 : -1));
             } else if (payload === 'ZA') {
-                orderedVideogames.sort((a, b) => (b.name > a.name ? 1 : -1));
+                orderVideogames.sort((a, b) => (b.name > a.name ? 1 : -1));
             } else if (payload === '50') {
-                orderedVideogames.sort((a, b) => b.rating - a.rating);
+                orderVideogames.sort((a, b) => b.rating - a.rating);
             } else if (payload === '05') {
-                orderedVideogames.sort((a, b) => a.rating - b.rating);
+                orderVideogames.sort((a, b) => a.rating - b.rating);
             } 
-            return {...state, home_videogames : orderedVideogames}
+            return {...state, home_videogames : orderVideogames}
         case FILTER:
             if (payload === 'Default') {
-                return {...state, home_videogames : state.copy_videogames}
+                return {...state, home_videogames : state.original_videogames}
             }
-            return {...state, home_videogames : state.copy_videogames.filter((game) => game.genres.some(genre => genre.name === payload))}
+            const filterVideogames = state.original_videogames.filter((game) => game.genres.some(genre => genre.name === payload))
+            return {...state, home_videogames : filterVideogames}
         case GENRES:
             return {...state, genres : payload}
         case PLATFORMS:
             return {...state, platforms : payload}
+        case SET_PAGE:
+            return {...state, page : payload}
     }
 };
 

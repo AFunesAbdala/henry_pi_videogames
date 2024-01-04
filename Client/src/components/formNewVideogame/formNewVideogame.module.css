@@ -117,6 +117,10 @@
     outline: solid 2px rgb(137, 0, 255);
 }
 .inputDescription{
+    font-family: 'Roboto';
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
     height: 80px;
     margin: 10px 0px;
     padding: 10px 10px;

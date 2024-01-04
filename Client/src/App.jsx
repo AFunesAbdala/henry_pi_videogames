@@ -17,6 +17,19 @@ function App() {
 
   const { pathname } = useLocation();
 
+  if (pathname === "/") {
+    document.body.className = "landBack";
+  }
+  if (pathname === "/home") {
+    document.body.className = "homeBack";
+  }
+  if (pathname.startsWith("/detail")) {
+    document.body.className = "detailBack";
+  }
+  if (pathname.startsWith("/myvideogame")) {
+    document.body.className = "createBack";
+  }
+
   const platforms = useSelector(state => state.platforms)
   const genres = useSelector(state => state.genres)
   const videogames = useSelector(state => state.home_videogames)
@@ -24,36 +37,33 @@ function App() {
 
   const [ searchTerm , setSearchTerm ] = useState('')
 
+  const [ messageError , setMessageError] = useState("");
+  const [ activeModalError, setActiveModalError] = useState(false)
+
+  const handlerActiveModalError = (state) => {
+    setActiveModalError(state)
+  }
+
   useEffect(()=>{
     if (platforms.length === 0) dispatch(get_platforms())
     if (genres.length === 0) dispatch(get_genres())
-    if (videogames.length === 0 || searchTerm === '') dispatch(get_videogames())
-    if (searchTerm != '') dispatch(get_videogamesByName(searchTerm))
-
-    if (pathname === "/") {
-      document.body.className = "landBack";
-    }
-    if (pathname === "/home") {
-      document.body.className = "homeBack";
-    }
-    if (pathname.startsWith("/detail")) {
-      document.body.className = "detailBack";
-    }
-    if (pathname.startsWith("/myvideogame")) {
-      document.body.className = "createBack";
-    }
-  }, [searchTerm, pathname])
-
+    if (videogames.length === 0 || searchTerm === '') dispatch(get_videogames("api"))
+    if (searchTerm != '') dispatch(get_videogamesByName(searchTerm)).catch(error => {
+      setMessageError(error.response.data.message)
+      handlerActiveModalError(true)
+    })
+  }, [searchTerm])
 
   const submitVideogame = (videogameData) => {
     axios
       .post(`${URL}/myvideogame`, videogameData)
       .then((response) => {
-        window.alert(response.data.message)
+        setActiveModalError(true)
+        setMessageError(response.data.message)
       })
       .catch((error) => {
-        console.log(error)
-        window.alert(error.response.data.errors.map(e => e.message))
+        setActiveModalError(true)
+        setMessageError(error.response.data.message)
       })
   }
 
@@ -64,12 +74,14 @@ function App() {
       .delete(`${URL}/myvideogame/${uuid}`)
       .then((response) => {
         if (response.status === 200) {
-          window.alert(response.data.message)
+          setActiveModalError(true)
+          setMessageError(response.data.message)
           navigate('/home')
         }
       })
       .catch((error) => {
-        window.alert(error.response.data.message)
+        setActiveModalError(true)
+        setMessageError(error.response.data.message)
       })
   }
 
@@ -77,10 +89,12 @@ function App() {
     axios
       .put(`${URL}/myvideogame/${UUID}`, videogameData)
       .then((response) => {
-        window.alert(response.data.message)
+        setActiveModalError(true)
+        setMessageError(response.data.message)
       })
       .catch((error) => {
-        window.alert(error.response.data.map(e => e.message))
+        setActiveModalError(true)
+        setMessageError(error.response.data.message)
       })
   }
 
@@ -89,9 +103,9 @@ function App() {
       {pathname != "/" && <NavBar genres={genres} searchTerm={searchTerm} setSearchTerm={setSearchTerm}></NavBar>}
       <Routes>
           <Route path={Helpers.Landing} element={<Landing/>}></Route>
-          <Route path={Helpers.Home} element={<Home/>}></Route>
+          <Route path={Helpers.Home} element={<Home messageError={messageError} activeModalError={activeModalError} handlerActiveModalError={handlerActiveModalError}/>}></Route>
           <Route path={Helpers.Detail} element={<Detail deleteVideogame={deleteVideogame} />}></Route>
-          <Route path={Helpers.Create} element={<CreateVideogame platforms={platforms} genres={genres} submitVideogame={submitVideogame} editVideogame={editVideogame}/>}></Route>
+          <Route path={Helpers.Create} element={<CreateVideogame platforms={platforms} genres={genres} submitVideogame={submitVideogame} editVideogame={editVideogame} messageError={messageError} activeModalError={activeModalError} handlerActiveModalError={handlerActiveModalError} setMessageError={setMessageError}/>}></Route>
       </Routes>
     </div>  
   )

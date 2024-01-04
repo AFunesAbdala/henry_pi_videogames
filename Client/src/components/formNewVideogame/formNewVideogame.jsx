@@ -1,11 +1,11 @@
 import { useState } from "react";
 import style from "./formNewVideogame.module.css"
-import { Validate, ValidateForm } from "./validations/validate";
+import { Validate } from "./validations/validate";
 import { useLocation } from "react-router-dom";
 
 const FormNewVideogame = (props) => {
 
-    const { platforms , genres, submitVideogame, editVideogame } = props
+    const { platforms , genres, submitVideogame, editVideogame, handlerActiveModalError, setMessageError } = props
 
     const { pathname } = useLocation()
     const UUID = pathname.split('/')[3]
@@ -62,7 +62,7 @@ const FormNewVideogame = (props) => {
         event.preventDefault()
 
         if (pathname.endsWith(0)) {
-            if (Object.values(errors).some(error => error === '')){
+            if (Object.values(errors).every(error => error === '')){
                 submitVideogame({...videogameData, genres : selectedGenres, platforms : selectedPlatforms})
                 setVideogameData({
                     name : "",
@@ -82,11 +82,11 @@ const FormNewVideogame = (props) => {
                     platforms : "Select at least one platform"
                 })
             } else {
-                setErrors(ValidateForm(videogameData, selectedGenres, selectedPlatforms))
-                window.alert("Complete the form")
+                setMessageError("Complete the form without errors")
+                handlerActiveModalError()
             }
         } else {
-            if (Object.values(errors).some(error => error === '')){
+            if (Object.values(errors).every(error => error === '')){
                 editVideogame( UUID , {...videogameData, genres : selectedGenres, platforms : selectedPlatforms})
                 setVideogameData({
                     name : "",
@@ -106,8 +106,9 @@ const FormNewVideogame = (props) => {
                     platforms : "Select at least one platform"
                 })
             } else {
-                setErrors(ValidateForm(videogameData, selectedGenres, selectedPlatforms))
-                window.alert("Complete the form")
+                setMessageError("Complete the form without errors")
+                handlerActiveModalError()
+                
             }
         }
         

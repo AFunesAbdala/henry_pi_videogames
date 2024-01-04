@@ -5,3 +5,16 @@
     flex-wrap: wrap;
     gap: 30px 30px;
 }
+@font-face {
+    font-family: 'Stretch Pro';
+    src: url('../../assets/fonts/StretchPro.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+.message{
+    font-family: 'Stretch Pro';
+    font-size: 40px;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
+}

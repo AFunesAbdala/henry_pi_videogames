@@ -1,45 +1,45 @@
 .wrapper{
     position: absolute;
     z-index: 2;
-    top: 90px;
+    top: 210px;
     left: 10px;
 }
-.orderBtn{
+.originBtn{
     opacity: 1;
     width: 50px;
     height: 50px;
     position: absolute;
     background-color: white;
     border-radius: 50%;
-    background-image: url(../../../assets/icons/IconOrder.png);
+    background-image: url(../../../assets/icons/IconOrigin.png);
     background-repeat: no-repeat;
     background-size: 35px;
     background-position: center;
     cursor: pointer;
     transition: opacity 1s, box-shadow .3s, transform .3s, background-color .3s;
 }
-.orderBtnHide{
+.originBtnHide{
     opacity: 0;
     width: 50px;
     height: 50px;
     position: absolute;
     background-color: white;
     border-radius: 50%;
-    background-image: url(../../../assets/icons/IconOrder.png);
+    background-image: url(../../../assets/icons/IconOrigin.png);
     background-repeat: no-repeat;
     background-size: 35px;
     background-position: center;
     cursor: pointer;
     transition: opacity 1s, box-shadow .3s, transform .3s, background-color .3s;
 }
-.orderBtn:hover{
+.originBtn:hover{
     box-shadow: 0px 0px 10px rgba(137, 0, 255, 0.4);
 }
-.orderBtn:active{
+.originBtn:active{
     background-color: #dddddd;
     transform: scale(0.8);
 }
-.orderBtn::before {
+.originBtn::before {
     content: attr(data-tooltip);
     position: absolute;
     background-color: rgba(255, 255, 255, 0.1);
@@ -58,7 +58,7 @@
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
 }
-.orderBtn:hover::before {
+.originBtn:hover::before {
     opacity: 1;
     visibility: visible;
 }
@@ -67,7 +67,7 @@
     z-index: 2;
     overflow: hidden;
     width: 200px;
-    height: 190px;
+    height: 95px;
     background-color: white;
     border-radius: 25px;
     position: relative;

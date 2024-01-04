@@ -5,6 +5,7 @@ import BtnOrder from "./order/BtnOrder"
 import BtnFilter from "./filter/BtnFilter"
 import { useEffect, useState } from "react"
 import Search from "./search/Search"
+import BtnOrigin from "./origin/BtnOrigin"
 
 const NavBar = (props) => {
 
@@ -15,6 +16,7 @@ const NavBar = (props) => {
     const [ search , setSearch ] = useState(false)
     const [ btnFilter , setBtnFilter ] = useState(false)
     const [ btnOrder , setBtnOrder ] = useState(false)
+    const [ btnOrigin , setBtnOrigin ] = useState(false)
 
     const [ expanded , setExpanded ] = useState(false)
     const [ expandedBtn , setExpandedBtn ] = useState(false)
@@ -42,9 +44,10 @@ const NavBar = (props) => {
                     <div className={ expandedBtn ? style.homeBtn :style.homeBtnHide} data-tooltip="Home"></div>
                 </Link>
                 <div className={ expanded ? style.navcontainer : style.navcontainerHide}>
-                    <Search visibility={search} setVisibilityOrder={setBtnOrder} setVisibilityFilter={setBtnFilter} setVisibilitySearch={setSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm}></Search>
-                    <BtnOrder visibility={btnOrder} setVisibilityOrder={setBtnOrder} setVisibilityFilter={setBtnFilter} setVisibilitySearch={setSearch}></BtnOrder>
-                    <BtnFilter genres={genres}visibility={btnFilter} setVisibilityFilter={setBtnFilter} setVisibilityOrder={setBtnOrder} setVisibilitySearch={setSearch}></BtnFilter>
+                    <Search visibility={search} setVisibilitySearch={setSearch} searchTerm={searchTerm} setSearchTerm={setSearchTerm} setVisibilityOrigin={setBtnOrigin} setVisibilityOrder={setBtnOrder} setVisibilityFilter={setBtnFilter}></Search>
+                    <BtnOrder visibility={btnOrder} setVisibilityOrder={setBtnOrder} setVisibilityOrigin={setBtnOrigin} setVisibilityFilter={setBtnFilter} setVisibilitySearch={setSearch}></BtnOrder>
+                    <BtnFilter genres={genres} visibility={btnFilter} setVisibilityOrigin={setBtnOrigin} setVisibilityFilter={setBtnFilter} setVisibilityOrder={setBtnOrder} setVisibilitySearch={setSearch}></BtnFilter>
+                    <BtnOrigin visibility={btnOrigin} setVisibilityOrigin={setBtnOrigin} setVisibilityOrder={setBtnOrder} setVisibilityFilter={setBtnFilter} setVisibilitySearch={setSearch}></BtnOrigin>
                     <div className={style.filterBtn}></div>
                     <Link to={Helpers.Landing} className={style.linkBtn}>
                         <div className={ expandedBtn ? style.logOutBtn : style.logOutBtnHide} data-tooltip="Log Out" ></div>

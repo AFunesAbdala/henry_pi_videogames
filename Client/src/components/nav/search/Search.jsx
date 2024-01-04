@@ -3,7 +3,7 @@ import style from './Search.module.css'
 
 const Search = (props) => {
 
-    const { visibility , setVisibilityOrder , setVisibilityFilter , setVisibilitySearch , searchTerm , setSearchTerm } = props
+    const { visibility , setVisibilityOrder , setVisibilityFilter , setVisibilitySearch, setVisibilityOrigin , searchTerm , setSearchTerm } = props
 
     const [ expanded , setExpanded ] = useState(false)
 
@@ -21,6 +21,7 @@ const Search = (props) => {
         setVisibilitySearch(!visibility)
         setVisibilityOrder(false)
         setVisibilityFilter(false)
+        setVisibilityOrigin(false)
 
     }
 
@@ -37,7 +38,7 @@ const Search = (props) => {
                     value={searchTerm} 
                     onChange={handleInputChange}
                     className={style.searchBar} 
-                    placeholder='Ingrese un nombre de videojuego'
+                    placeholder="Enter the name of a video game"
                 />    
             </div>
         </div>

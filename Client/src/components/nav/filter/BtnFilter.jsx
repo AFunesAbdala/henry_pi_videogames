@@ -5,7 +5,7 @@ import { filterVideogames } from '../../../redux/actions'
 
 const BtnFilter = (props) => {
 
-    const { genres, visibility , setVisibilityOrder , setVisibilityFilter , setVisibilitySearch } = props
+    const { genres, visibility , setVisibilityOrder , setVisibilityFilter , setVisibilitySearch, setVisibilityOrigin } = props
 
     const dispatch = useDispatch()
 
@@ -13,7 +13,7 @@ const BtnFilter = (props) => {
         setVisibilityFilter(!visibility)
         setVisibilityOrder(false)
         setVisibilitySearch(false)
-
+        setVisibilityOrigin(false)
     }
 
     const [ optionSelected , setOptionSelected ] = useState("Default")

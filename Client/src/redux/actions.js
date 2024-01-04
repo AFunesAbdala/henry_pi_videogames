@@ -3,13 +3,14 @@ import {
     FILTER,
     GENRES,
     PLATFORMS,
-    ORDER
+    ORDER,
+    SET_PAGE
 } from './action_types';
 import { URL } from '../helpers/routesBack'
 import axios from 'axios';
 
-export const get_videogames = () => {
-    const endpoint = `${URL}/videogames`
+export const get_videogames = (origin) => {
+    const endpoint = `${URL}/videogames?origin=${origin}`
     return async (dispatch) => {
 
         try {
@@ -41,7 +42,7 @@ export const get_videogamesByName = (name) => {
                 });
             }
         } catch (error) {
-            window.alert(error.response.data.error)
+            throw error
         }
     }
 }
@@ -93,5 +94,11 @@ export const orderVideogames = (order) => {
 export const filterVideogames = (genre) => {
     return {
       type : FILTER, payload : genre
+    }
+}
+
+export const setPage = (page) => {
+    return {
+      type : SET_PAGE, payload : page
     }
 }
